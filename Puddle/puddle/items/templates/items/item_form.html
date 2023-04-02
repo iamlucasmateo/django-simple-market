@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<form method="post" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-6">
+        <label class="inline-block mb-2">Name: </label>
+        {{ item_form.name }}
+        {{ item_form.name.errors }}
+    </div>
+    <div class="mb-6">
+        <label class="inline-block mb-2">Category: </label>
+        {{ item_form.category }}
+        {{ item_form.category.errors }}
+    </div>
+    <div class="mb-6">
+        <label class="inline-block mb-2">Description: </label>
+        {{ item_form.description }}
+        {{ item_form.description.errors }}
+    </div>
+    <div class="mb-6">
+        <label class="inline-block mb-2">Price: </label>
+        {{ item_form.price }}
+        {{ item_form.price.errors }}
+    </div>
+    <div class="mb-6">
+        <label class="inline-block mb-2">Image </label>
+        {{ item_form.image }}
+        {{ item_form.image.errors }}
+    </div>
+    {% if form.errors or form.non_field_errors %}
+        <div class="mb-6">
+            <p class="text-red-500">Please correct the errors below.</p>
+            {{ form.errors }}
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+    <button type="submit">Create Item</button>
+</form>
+{% endblock %}
