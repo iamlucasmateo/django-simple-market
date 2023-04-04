@@ -1,6 +1,11 @@
 {% extends 'core/base.html' %}
 {% block content %}
-<form method="post" action="." enctype="multipart/form-data">
+{% if patch %}
+    <form>
+        <input type="hidden" name="_method" value="PATCH">
+{% else %}
+    <form method="post" action="." enctype="multipart/form-data">
+{% endif %}
     {% csrf_token %}
     <div class="mb-6">
         <label class="inline-block mb-2">Name: </label>
@@ -22,11 +27,13 @@
         {{ item_form.price }}
         {{ item_form.price.errors }}
     </div>
-    <div class="mb-6">
-        <label class="inline-block mb-2">Image </label>
-        {{ item_form.image }}
-        {{ item_form.image.errors }}
-    </div>
+    {% if not patch %}
+        <div class="mb-6">
+            <label class="inline-block mb-2">Image </label>
+            {{ item_form.image }}
+            {{ item_form.image.errors }}
+        </div>
+    {% endif %}
     {% if form.errors or form.non_field_errors %}
         <div class="mb-6">
             <p class="text-red-500">Please correct the errors below.</p>
@@ -34,6 +41,20 @@
             {{ form.non_field_errors }}
         </div>
     {% endif %}
-    <button type="submit">Create Item</button>
+    {% if patch %}
+    <button
+        type="submit"
+        class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
+    >
+        Update Item
+    </button>
+    {% else %}
+    <button
+        type="submit"
+        class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
+    >
+        Create Item
+    </button>
+    {% endif %}
 </form>
 {% endblock %}
