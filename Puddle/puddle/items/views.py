@@ -48,15 +48,14 @@ def create_item(request):
     
     return render(request, "items/item_form.html", {"item_form": ItemForm(), "patch": False})
 
+
 def _update_item_and_redirect(request, item: Item):
-    Item.objects.update(
+    Item.objects.filter(id=item.id).update(
         name=request.GET.get("name", None) or item.name,
         description=request.GET.get("description", None) or item.name,
         price=request.GET.get("price", None) or item.price,
         is_sold=True,
     )
-
-
 
 
 @login_required

@@ -64,16 +64,6 @@ def login_view(request):
     return _login_response(request)
 
 
-def inbox(request):
-    return render(
-        request,
-        "core/inbox.html",
-        {
-            "request": request,
-        }
-    )
-
-
 def dashboard(request):
     return render(
         request,

@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% block title %}Send message{% endblock %}
+
+{% block content %}
+<form>
+    <input 
+        type="text"
+        name="message"
+        placeholder="Type your message here"
+        class="border border-gray-400 rounded w-full py-2 px-4 mb-4"
+        style="height: 200px;"
+    >
+    <button 
+        type="submit"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
+        Send
+    </button>
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% block title %}Send message{% endblock %}
+
+{% block content %}
+{% for message in messages %}
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="flex justify-between">
+            <div class="flex">
+                <img src="{{ message.sender.profile.avatar.url }}" alt="avatar" class="w-10 h-10 rounded-full mr-4">
+                <div>
+                    <p class="text-gray-900 font-bold text-xl mb-2">{{ message.sender.username }}</p>
+                    <p class="text-gray-700 text-base">{{ message.message }}</p>
+                    <p class="text-gray-500 text-base">About item: {{ message.about_item }}</p>
+                </div>
+            </div>
+            <div>
+                <p class="text-gray-700 text-base">{{ message.created_at }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
